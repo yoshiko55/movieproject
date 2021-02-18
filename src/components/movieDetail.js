@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import axios from 'axios';
+
+class MovieDetail extends Component {
+    constructor(props) {
+        super(props) 
+        this.state = { movie: "" };
+  
+
+}
+    componentDidMount() {
+        axios
+            .get(`http://64.225.63.44/movies/${this.props.match.params.id}`)
+            .then((response) => this.setState({ movie: response.data }));
+    }
+    render() {
+
+      
+        console.log(this.state.movie)
+        const {
+            id,
+            title,
+            actor,
+            genre,
+            image,
+            rating,
+            description,
+        } = this.state.movie
+        return (
+            <div>
+                <h1>image</h1>
+                
+               
+                <h1>Title{title}</h1>
+                
+                <h1>Genre{genre}</h1>
+               
+                <h1>Actor{actor}</h1>
+                
+                <h1>rating{rating}</h1>
+               
+                <p>{description}</p>
+                
+            </div>
+    
+             
+             
+        )
+    }
+}
+ 
+export default MovieDetail;
+//.1.import axios
+//.2 call ApI in compoDidMount
+//3 store detail in state
+//plug in information like title into render method using like text <h1> or<p>
