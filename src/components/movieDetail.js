@@ -13,7 +13,7 @@ class MovieDetail extends Component {
         axios
             .get(`http://64.225.63.44/movies/${this.props.match.params.id}`)
             .then((response) =>
-                this.setState({ movie: response.dat,poster: response.data.image }));
+                this.setState({ movie: response.data, poster: response.data.image }));
     }
     render() {
 
@@ -30,7 +30,7 @@ class MovieDetail extends Component {
         } = this.state.movie
         return (
             <div>
-                <h1>image</h1>
+            <h1>image</h1>
                 
           <img
             className=""
