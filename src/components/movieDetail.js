@@ -5,14 +5,15 @@ import axios from 'axios';
 class MovieDetail extends Component {
     constructor(props) {
         super(props) 
-        this.state = { movie: "" };
+        this.state = { movie: "", poster:""};
   
 
 }
     componentDidMount() {
         axios
             .get(`http://64.225.63.44/movies/${this.props.match.params.id}`)
-            .then((response) => this.setState({ movie: response.data }));
+            .then((response) =>
+                this.setState({ movie: response.dat,poster: response.data.image }));
     }
     render() {
 
@@ -31,6 +32,19 @@ class MovieDetail extends Component {
             <div>
                 <h1>image</h1>
                 
+          <img
+            className=""
+            width="300%"
+            height="225"
+            src={
+                this.state.poster === null
+              ? "https://imageforproject.nyc3.digitaloceanspaces.com/download.png"
+              : `http://64.225.63.44${this.state.poster.url}`}
+            role="img"
+            aria-label="Placeholder: Thumbnail"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          />
                
                 <h1>Title{title}</h1>
                 
